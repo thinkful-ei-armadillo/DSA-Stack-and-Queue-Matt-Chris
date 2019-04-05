@@ -57,7 +57,7 @@ function display(ss) {
 }
 
 function is_palindrome(s) {
-  s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+  s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
   const wordStack = new Stack();
   let rWord = '';
 
@@ -66,7 +66,7 @@ function is_palindrome(s) {
   }
 
   while(wordStack.top) {
-    rWord += wordStack.pop()
+    rWord += wordStack.pop();
   }
 
   return s === rWord ? true : false;
@@ -76,16 +76,16 @@ function sort(stack) {
   let tempStack = new Stack();
 
   while(!isEmpty(stack)){
-    let first = stack.pop()
+    let first = stack.pop();
 
     while(tempStack.top !== null && tempStack.top.data > first) {
-      stack.push(tempStack.pop())
+      stack.push(tempStack.pop());
     }
-    tempStack.push(first)
+    tempStack.push(first);
   }
 
   while(!isEmpty(tempStack)){
-    stack.push(tempStack.pop())
+    stack.push(tempStack.pop());
   }
   
   return stack;
@@ -110,7 +110,7 @@ function main(){
   // console.log(display(numStack));
   // console.log(is_palindrome('accar'))
   // console.log(matchParens('(())'))
-  console.log(sort(numStack))
+  console.log(sort(numStack));
 
 }
 
