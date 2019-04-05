@@ -67,15 +67,38 @@ function squareDance(arr) {
 
   return ((menCounter === 0 && womenCounter === 0) ?
     message : (`${message} there is ${menCounter ?
-      menCounter + ' men alone =(' : womenCounter + ' women alone =('}`)
+      menCounter + ' men alone 😭' : womenCounter + ' women alone 😭'}`)
   );
 }
 
+function ophidianBank() {
+  const q = new Queue();
+
+
+  for (let i = 0; i < 50; i++) {
+    q.enqueue(
+      {
+        name: i
+      })
+  }
+
+  const person = q.dequeue();
+  if (Math.random() < .95) {
+  
+    q.enqueue(person)
+  }
+  
+    console.log(person)
+  
+}
 
 function main() {
-  const data = ['m', 'm', 'f', 'f','m']
+  const data = ['m', 'm', 'f', 'f', 'm']
+  for (let i = 0; i < 20; i++) {
+    ophidianBank()
+  }
 
-  console.log(squareDance(data))
+  // console.log(squareDance(data))
 }
 
 main();
