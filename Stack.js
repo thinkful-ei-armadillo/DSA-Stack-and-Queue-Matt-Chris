@@ -1,3 +1,4 @@
+'use strict';
 class _Node {
   constructor(data, next) {
     this.data = data;
@@ -56,7 +57,7 @@ function display(ss) {
 }
 
 function is_palindrome(s) {
-  s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+  s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
   const wordStack = new Stack();
   let rWord = '';
 
@@ -65,10 +66,32 @@ function is_palindrome(s) {
   }
 
   while(wordStack.top) {
-    rWord += wordStack.pop()
+    rWord += wordStack.pop();
   }
 
   return s === rWord ? true : false;
+}
+
+function matchParens(str){
+  let stack = new Stack();
+  let position = 0;
+  for (let i = 0; i < str.length; i++) {
+    const element = str[i];
+    if (element === '('){
+      stack.push(element);
+    }
+    else{
+      if(stack.top !== null) {
+        stack.pop(element);
+      }
+      else{
+        position = i; 
+        return position ; 
+      }  
+    }
+    position = i + 1; 
+  }
+  return stack.top === null ? true : str.length - position;    
 }
 
 function main(){
@@ -84,6 +107,9 @@ function main(){
   // console.log(isEmpty(starTrek));
   // console.log(display(starTrek));
   // console.log(is_palindrome('accar'))
+  console.log(matchParens('()()()')); 
 }
+
+
 
 main();
