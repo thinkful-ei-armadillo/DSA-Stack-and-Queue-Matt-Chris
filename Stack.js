@@ -1,4 +1,3 @@
-'use strict';
 class _Node {
   constructor(data, next) {
     this.data = data;
@@ -45,6 +44,7 @@ function display(ss) {
   while(ss.top) {
     let temp = ss.pop();
     ele.push(temp);
+
     tempStack.push(temp);
   }
 
@@ -57,7 +57,7 @@ function display(ss) {
 }
 
 function is_palindrome(s) {
-  s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, '');
+  s = s.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
   const wordStack = new Stack();
   let rWord = '';
 
@@ -66,37 +66,39 @@ function is_palindrome(s) {
   }
 
   while(wordStack.top) {
-    rWord += wordStack.pop();
+    rWord += wordStack.pop()
   }
 
   return s === rWord ? true : false;
 }
 
-function matchParens(str){
-  let stack = new Stack();
-  let position = 0;
-  for (let i = 0; i < str.length; i++) {
-    const element = str[i];
-    if (element === '('){
-      stack.push(element);
+function sort(stack) {
+  let tempStack = new Stack();
+
+  while(!isEmpty(stack)){
+    let first = stack.pop()
+
+    while(tempStack.top !== null && tempStack.top.data > first) {
+      stack.push(tempStack.pop())
     }
-    else{
-      if(stack.top !== null) {
-        stack.pop(element);
-      }
-      else{
-        position = i; 
-        return position ; 
-      }  
-    }
-    position = i + 1; 
+    tempStack.push(first)
   }
-  return stack.top === null ? true : str.length - position;    
+
+  while(!isEmpty(tempStack)){
+    stack.push(tempStack.pop())
+  }
+  
+  return stack;
 }
 
 function main(){
 
   const starTrek = new Stack();
+  const numStack = new Stack();
+
+  numStack.push(2);
+  numStack.push(1);
+  numStack.push(3);
 
   starTrek.push('Kirk');
   starTrek.push('Spock');
@@ -105,11 +107,11 @@ function main(){
 
   // console.log(peek(starTrek));
   // console.log(isEmpty(starTrek));
-  // console.log(display(starTrek));
+  // console.log(display(numStack));
   // console.log(is_palindrome('accar'))
-  console.log(matchParens('()()()')); 
+  // console.log(matchParens('(())'))
+  console.log(sort(numStack))
+
 }
-
-
 
 main();
